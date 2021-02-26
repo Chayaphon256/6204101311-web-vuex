@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <user/>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ชื่อสินค้า</th>
+          <th scope="col">ราคา</th>
+          <th scope="col">จำนวน</th>
+          <th scope="col">รวม</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(mi, index) in ShowMenuSelect" :key="index">
+          <td>{{ mi.NameProduct }}</td>
+          <td>{{ mi.Price }}</td>
+          <td>{{ mi.Amount }}</td>
+          <td>{{ mi.Total }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import user from "../components/User.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
-  }
+    user
+  },
+    computed: {
+      ...mapGetters(["ShowMenuSelect"]),
+
+  },
 };
 </script>
